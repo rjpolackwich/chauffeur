@@ -3,6 +3,11 @@
 
 In building Chauffeur, attention was taken to creating interfaces and naming conventions that shed light on some of the less understood aspects of Overpass, as well as [Open Street Map](https://wiki.openstreetmap.org/wiki/Main_Page)(OSM). The more we know about the kind of data out there on OSM, the better judements we can make when, eg, building QA metrics on results, as well as optimizing query requests, etc. Chauffeur is supposed to empower researchers to develop these kind of data intuitions and statistics by abstracting the Query Language itself, providing best practices as taken from Overpass, providing access to formatting and service params, and defining preconfigured objects for different use cases.
 
+## Installation
+```
+pip install chauffeur-pass
+```
+
 ## Getting Started
 
 ```
