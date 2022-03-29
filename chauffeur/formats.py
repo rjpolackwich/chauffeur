@@ -19,13 +19,13 @@ class OutputFormats:
 
     # Can set defaults and stuff here
 
-opf = OutputFormats()
+fmt = OutputFormats()
 
 class OutputFormatter:
     def __init__(self,
-                 verbosity=opf.Verbosity.GENERIC,
+                 verbosity=fmt.Verbosity.GENERIC,
                  geometry=None,
-                 sortorder=opf.SortOrder.OBJECT_ID,
+                 sortorder=fmt.SortOrder.OBJECT_ID,
                  result_limit=-1):
 
         self._v = verbosity
@@ -35,7 +35,7 @@ class OutputFormatter:
         self._result_limit = result_limit
 
     def _write_tagspec(self):
-        if self.IncludeTags and self.VERBOSITY is not opf.Verbosity.VERBOSE:
+        if self.IncludeTags and self.VERBOSITY is not fmt.Verbosity.VERBOSE:
             return True
         return False
 
@@ -59,7 +59,7 @@ class OutputFormatter:
             self._include_tags = True
             return
         if val in (False, 0):
-            if self.VERBOSITY is opf.Verbosity.VERBOSE:
+            if self.VERBOSITY is fmt.Verbosity.VERBOSE:
                 raise ValueError("Verbosity level return values cannot be modified")
             self._include_tags = False
             return
@@ -72,7 +72,7 @@ class OutputFormatter:
     @VERBOSITY.setter
     def VERBOSITY(self, mode):
         self._v = mode
-        if mode is opf.Verbosity.VERBOSE:
+        if mode is fmt.Verbosity.VERBOSE:
             self._include_tags = True
 
     @property
@@ -94,11 +94,11 @@ class OutputFormatter:
     def __repr__(self):
         s = "out"
         modes = []
-        if self._v != opf.Verbosity.GENERIC:
+        if self._v != fmt.Verbosity.GENERIC:
             modes.append(self._v.value)
         if self._g is not None:
             modes.append(self._g.value)
-        if self._s == opf.SortOrder.QUADTILE:
+        if self._s == fmt.SortOrder.QUADTILE:
             modes.append(self._s.value)
         if self._write_tagspec():
             modes.append('tags')

@@ -5,7 +5,7 @@ from chauffeur.query import QueryRegister
 from chauffeur.grammar import Node, Way, Relation, GenericElementQuery, CompoundQuery
 from chauffeur.grammar import UnionQuerySet, DifferenceQuerySet
 from chauffeur.settings import QuerySettings
-from chauffeur.formats import opf, OutputFormatter
+from chauffeur.formats import fmt, OutputFormatter
 from chauffeur.filters import TagFilter
 
 
@@ -111,7 +111,7 @@ class TestQueryBuilder(unittest.TestCase):
         self.assertIsInstance(self.qb.settings, QuerySettings)
         self.assertIsInstance(self.qb.output_mode, OutputFormatter)
         self.assertIsInstance(self.qb.qsx, QueryRegister)
-        self.assertEqual(self.qb.output_mode.SORTORDER, opf.SortOrder.QUADTILE)
+        self.assertEqual(self.qb.output_mode.SORTORDER, fmt.SortOrder.QUADTILE)
 
     def test_query_assignment_basic(self):
         self.qb.qsx.append(self.nwrq)

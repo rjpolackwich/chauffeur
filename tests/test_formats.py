@@ -1,7 +1,7 @@
 import unittest
 
 import enum
-from chauffeur.formats import OutputFormats, opf, OutputFormatter
+from chauffeur.formats import OutputFormats, fmt, OutputFormatter
 
 
 class TestOutputFormats(unittest.TestCase):
@@ -11,30 +11,30 @@ class TestOutputFormats(unittest.TestCase):
         self.assertTrue(hasattr(OutputFormats, "SortOrder"))
 
     def test_outmodes(self):
-        self.assertIsInstance(opf.Verbosity, enum.EnumMeta)
-        self.assertIsInstance(opf.Geometry, enum.EnumMeta)
-        self.assertIsInstance(opf.SortOrder, enum.EnumMeta)
+        self.assertIsInstance(fmt.Verbosity, enum.EnumMeta)
+        self.assertIsInstance(fmt.Geometry, enum.EnumMeta)
+        self.assertIsInstance(fmt.SortOrder, enum.EnumMeta)
         # Test verbosity
-        self.assertEqual(opf.Verbosity.GENERIC.value, "body")
-        self.assertEqual(opf.Verbosity.CONCISE.value, "skel")
-        self.assertEqual(opf.Verbosity.BRIEF.value, "ids")
-        self.assertEqual(opf.Verbosity.VERBOSE.value, "meta")
+        self.assertEqual(fmt.Verbosity.GENERIC.value, "body")
+        self.assertEqual(fmt.Verbosity.CONCISE.value, "skel")
+        self.assertEqual(fmt.Verbosity.BRIEF.value, "ids")
+        self.assertEqual(fmt.Verbosity.VERBOSE.value, "meta")
         # Test geometry
-        self.assertEqual(opf.Geometry.FULL_GEOM.value, "geom")
-        self.assertEqual(opf.Geometry.BOUNDING_BOX.value, "bb")
-        self.assertEqual(opf.Geometry.CENTER_POINT.value, "center")
+        self.assertEqual(fmt.Geometry.FULL_GEOM.value, "geom")
+        self.assertEqual(fmt.Geometry.BOUNDING_BOX.value, "bb")
+        self.assertEqual(fmt.Geometry.CENTER_POINT.value, "center")
         # Test sortorder
-        self.assertEqual(opf.SortOrder.OBJECT_ID.value, "asc")
-        self.assertEqual(opf.SortOrder.QUADTILE.value, "qt")
+        self.assertEqual(fmt.SortOrder.OBJECT_ID.value, "asc")
+        self.assertEqual(fmt.SortOrder.QUADTILE.value, "qt")
 
     def test_OutputFormatter(self):
         self.assertIsInstance(OutputFormatter.VERBOSITY, property)
         self.assertIsInstance(OutputFormatter.GEOMETRY, property)
         self.assertIsInstance(OutputFormatter.SORTORDER, property)
         opftr = OutputFormatter()
-        self.assertEqual(opftr.VERBOSITY, opf.Verbosity.GENERIC)
+        self.assertEqual(opftr.VERBOSITY, fmt.Verbosity.GENERIC)
         self.assertIsNone(opftr.GEOMETRY)
-        self.assertEqual(opftr.SORTORDER, opf.SortOrder.OBJECT_ID)
+        self.assertEqual(opftr.SORTORDER, fmt.SortOrder.OBJECT_ID)
         self.assertEqual(repr(opftr), "out;")
 
     def test_MetaOptions(self):

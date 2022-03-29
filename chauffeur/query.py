@@ -6,7 +6,7 @@ import csv
 from .grammar import Node, Way, Relation, GenericElementQuery, CompoundQuery
 from .settings import QuerySettings
 from .filters import BboxFilter, TagFilter, IdFilter, UserFilter
-from .formats import OutputFormatter, opf
+from .formats import OutputFormatter, fmt
 
 import requests
 
@@ -115,7 +115,7 @@ class QueryRegister:
     def __repr__(self):
         s =  f'''{"".join(repr(qs) for qs in self.qc)}'''
         if self.qb.auto_recourse_down and self.output != Node:
-            if self.qb.output_mode.VERBOSITY is (opf.Verbosity.CONCISE or opf.Verbosity.GENERIC):
+            if self.qb.output_mode.VERBOSITY is (fmt.Verbosity.CONCISE or fmt.Verbosity.GENERIC):
                 if self.qb.output_mode.GEOMETRY is None:
                     s += "(._;>;);"
         return s
@@ -135,7 +135,7 @@ class QueryBuilder:
         self.output_mode = OutputFormatter()
         self.qsx = QueryRegister(self)
         if basic_optimize:
-            self.output_mode.SORTORDER = opf.SortOrder.QUADTILE
+            self.output_mode.SORTORDER = fmt.SortOrder.QUADTILE
         self.auto_recourse_down = auto_recourse
 
     @property
@@ -147,13 +147,13 @@ class QueryBuilder:
         self.settings.bbox = bbox
 
     def include_geometries(self):
-        self.output_mode.GEOMETRY = opf.Geometry.FULL_GEOM
+        self.output_mode.GEOMETRY = fmt.Geometry.FULL_GEOM
 
     def include_boundingboxes(self):
-        self.output_mode.GEOMETRY = opf.Geometry.BOUNDING_BOX
+        self.output_mode.GEOMETRY = fmt.Geometry.BOUNDING_BOX
 
     def include_centerpoints(self):
-        self.output_mode.GEOMETRY = opf.Geometry.CENTER_POINT
+        self.output_mode.GEOMETRY = fmt.Geometry.CENTER_POINT
 
     @property
     def raw_query_string(self):
