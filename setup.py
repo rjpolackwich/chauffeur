@@ -6,12 +6,17 @@ req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirement
 with open(req_path) as f:
     reqs = f.read().splitlines()
 
+readme_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.md")
+with open(readme_path) as f:
+    long_description = f.read()
 
-setup(name="chauffeurpass",
-      version="0.1",
+setup(name="chauffeur-pass",
+      version="0.0.1",
       author="Jamison Polackwich",
       author_email='rjpolackwich@gmail.com',
       description="Python API for making OSM queries via Overpass",
+      long_description=long_description,
+      long_description_content_type="text/markdown",
       url="https://github.com/rjpolackwich/chauffeur",
       license="MIT",
       packages=find_packages(exclude=['docs', 'tests']),
