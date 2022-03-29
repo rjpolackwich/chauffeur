@@ -44,7 +44,7 @@ Instead of creating three different filters on the same tag key, chauffeur conca
 
 We can match a tag key with any value whatsoever by excluding input vals:
 ```
-any_amenity = sky.TagFilter("amenity")
+any_amenity = cfr.TagFilter("amenity")
 ```
 Filtering by non-existence is supported as well:
 ```
